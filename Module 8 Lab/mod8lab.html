@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Functions & Conditionals & Objects Lab</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .bold {
+            font-weight: bold;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .colored {
+            color: blue;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>JavaScript Functions & Conditionals Lab</h1>
+
+    <!-- Activity 1: Using JavaScript Functions -->
+    <h3>Activity 1: Using JavaScript Functions</h3>
+    <p><strong>Objective:</strong> Understand how to define and invoke functions.</p>
+
+    <p>Complete the function <code>squareNumber</code> so that it returns the square of a number.</p>
+
+    <script>
+        //TODO implement the function squareNumber which takes a number and returns the square of the number.
+        //Your code goes here 
+        function squareNumber(n) {
+            return (n * n)
+        }
+
+        function displaySquare() {
+            let input = Number(document.getElementById("squareInput").value);
+            let result = "1-Uncomment the line below once you implement the function";
+            result = squareNumber(input);
+            document.getElementById("squareOutput").innerText = result;
+        }
+    </script>
+
+    <label for="squareInput">Enter a number:</label>
+    <input type="number" id="squareInput">
+    <button onclick="displaySquare()">Calculate Square</button>
+    <p>Result: <span id="squareOutput"></span></p>
+    <hr>
+
+    <!-- Activity 2: Using Conditional Statements -->
+    <h3>Activity 2: Using Conditional Statements</h3>
+    <p><strong>Objective:</strong> Learn to use if-else statements in JavaScript.</p>
+
+    <p>Complete the function <code>checkNumber</code> so that it logs whether a number is positive, negative, or zero.
+    </p>
+
+    <script>
+        //TODO: Implement the function checkNumber so that it logs whether a number is positive, negative, or zero.
+        //This function take single parameter 
+        //Your code goes here 
+        function checkNumber(n) {
+            if (n < 0) {
+                return "The number is negative"
+            }
+            else if (n > 0) {
+                return "The number is positive"
+            }
+            else {
+                return "The number is 0"
+            }
+        }
+
+
+        function displayNumberCheck() {
+            let input = Number(document.getElementById("numberInput").value);
+            let result = "2-Uncomment the line below once you implement the function";
+            result = checkNumber(input);
+            document.getElementById("numberOutput").innerText = result;
+        }
+    </script>
+
+    <label for="numberInput">Enter a number:</label>
+    <input type="number" id="numberInput">
+    <button onclick="displayNumberCheck()">Check Number</button>
+    <p>Result: <span id="numberOutput"></span></p>
+    <hr>
+
+    <!-- Activity 3: Looping Through an Array -->
+    <h3>Activity 3: Looping Through an Array</h3>
+    <p><strong>Objective:</strong> Practice looping through arrays using a for loop.</p>
+
+    <p>Complete the function <code>sumNumbers</code> so that it adds up each number in the array and returns the total
+        of them.</p>
+
+    <script>
+        //TODO Implement the function sumNumbers which accepts array of numbers and it adds up each number in the array and returns the total of them, please use for loop 
+        //Your code goes here 
+        function sumNumbers(arr) {
+            let sum = 0;
+            for (let i = 0; i < arr.length; i++) {
+                sum += arr[i];
+            }
+            return sum;
+        }
+
+        function displayDoubledNumbers() {
+            let input = document.getElementById("arrayInput").value;
+            let numberArray = input.split(",").map(Number);
+            let result = "3-Uncomment the line below once you implement the function";
+            result = sumNumbers(numberArray);
+            document.getElementById("arrayOutput").innerText = result;
+        }
+    </script>
+
+    <label for="arrayInput">Enter numbers separated by commas:</label>
+    <input type="text" id="arrayInput">
+    <button onclick="displayDoubledNumbers()">Sum them up</button>
+    <p>Result: <span id="arrayOutput"></span></p>
+    <hr>
+
+    <!-- Activity 4: Changing properties' value in an object  -->
+    <h3>Activity 4: JavaScript Objects Lab</h3>
+
+    <p>Modify the person object and display the updated information.</p>
+
+    <script>
+        // Preset person object
+        const person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 25,
+            eyeColor: "green"
+        };
+
+        function updatePerson() {
+            // TODO: Modify the object properties
+            // Change first name to Alice
+            // Change last name Smith
+            // Change age to 30 
+            // Change eye color to blue
+            person.firstName = "Alice";
+            person.lastName = "Smith";
+            person.age = 30;
+            person.eyeColor = "blue";
+
+            // Display updated person details
+            document.getElementById("info").innerHTML =
+                `<span class="bold">${person.firstName} ${person.lastName}</span> is 
+                <span class="italic">${person.age} years old</span> with 
+                <span class="colored">${person.eyeColor} eyes</span>.`;
+        }
+    </script>
+
+    <button onclick="updatePerson()">Update Person</button>
+    <p id="info">Here we go</p>
+
+
+
+</body>
+
+</html>
