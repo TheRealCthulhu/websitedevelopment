@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript In-Class Activities - Basic DOM Manipulation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>JavaScript In-Class Activities - Basic DOM Manipulation</h1>
+
+    <!-- Activity 1: Change Text Content -->
+    <h3>Activity 1: Change Text Content</h3>
+    <p id="text">Original text here</p>
+    <button onclick="changeText()">Change Text</button>
+
+    <script>
+        function changeText() {
+            let pg = document.getElementById("text");
+            pg.textContent = "The text has been updated!";
+        }
+    </script>
+
+    <hr>
+
+    <!-- Activity 2: Add and Remove Elements -->
+    <h3>Activity 2: Add and Remove Elements</h3>
+    <ul id="itemList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+    <button onclick="addItem()">Add Item</button>
+    <button onclick="removeItem()">Remove Last Item</button>
+
+    <script>
+        function addItem() {
+            let ul = document.getElementById("itemList");
+            let li = document.createElement("li");
+            li.textContent = "new item";
+            ul.appendChild(li);
+        }
+
+        function removeItem() {
+            let ul = document.getElementById("itemList");
+            if (ul.lastElementChild) {
+                ul.removeChild(ul.lastElementChild);
+            }
+        }
+    </script>
+
+    <hr>
+
+    <!-- Activity 3: Toggle Class -->
+    <h3>Activity 3: Toggle Highlight</h3>
+    <p id="toggleText">Click the button to highlight this text.</p>
+    <button onclick="toggleHighlight()">Toggle Highlight</button>
+
+    <script>
+        function toggleHighlight() {
+            let pg = document.getElementById("toggleText");
+            pg.classList.toggle("highlight");
+        }
+    </script>
+
+</body>
+
+</html>
