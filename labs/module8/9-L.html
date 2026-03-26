@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<!-- 
+    For this lab you are asked to fill in the missing JavaScript
+    code throughout this document as indicated in the comments.
+    
+    This lab is about using the JavaScript function document.getElementById().
+    This function grabs an HTML element by its id (the one you specify using
+    an attribute (ex. <p id="my_paragraph">Hello!</p>) and returns it.
+    You can use the variable you set using the function to modify the HTML element.
+    example:
+    var p = document.getElementById("my_paragraph");
+    p.style.color = "blue";
+    
+    You can use the innerHTML property to completely replace the contents of an element.
+    example:
+    p.innerHTML = "<a href=\"http://www.nytimes.com\">Read the news!</a>";
+    
+    For further reading checkout:
+    https://developer.mozilla.org/en/docs/Web/API/Document/getElementById
+    and
+    http://www.w3schools.com/jsref/met_document_getelementbyid.asp
+    and for what you can change on a returned element
+    http://www.w3schools.com/jsref/dom_obj_all.asp
+    On the left hand side of that page you will also find a section called "HTML Objects"
+    it lists specific attributes you can change on every HTML element.
+-->
+<html>
+
+<head>
+    <title>Web Programming</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <!-- Swapper -->
+
+    <script>
+        function swapContents() {
+            var p1 = document.getElementById("para1");
+            var p2 = document.getElementById("para2");
+            var temp = p1.innerHTML;
+            p1.innerHTML = p2.innerHTML;
+            p2.innerHTML = temp;
+
+        }
+    </script>
+
+    <h3>Swapper</h3>
+    <p id="para1">Hello!</p>
+    <p id="para2">Goodbye!</p>
+    <button onclick="swapContents()">Swap</button>
+    <hr>
+
+    <!-- Placing Emphasis -->
+
+    <script>
+        function emphasize() {
+            var emph = document.getElementById("placeForEmphasis");
+            emph.style.fontStyle = "italic"
+            emph.style.color = "Blue"
+            emph.style.background = "Yellow"
+        }
+    </script>
+
+    <h3>Placing Emhpasis</h3>
+    <p>Fall just started but I am already over the <span id="placeForEmphasis">bitter</span> cold.</p>
+    <button onclick="emphasize()">Emphasize</button>
+    <hr>
+
+    <!-- Tiny Calculator -->
+
+    <script>
+        function calculate() {
+            var operand1 = Number(document.getElementById("operand1").value);
+            if (isNaN(operand1)) {
+                window.alert("Operand 1 not a number!");
+                return;
+            }
+
+            var operand2 = Number(document.getElementById("operand2").value);
+            if (isNaN(operand2)) {
+                window.alert("Operand 2 not a number!");
+            }
+
+            var operation = document.getElementById("operation").value;
+
+            var answer;
+            if (operation == "addition") {
+                answer = operand1 + operand2;
+            } else if (operation == "subtraction") {
+                answer = operand1 - operand2;
+            } else if (operation == "multiplication") {
+                answer = operand1 * operand2;
+            } else {
+                answer = operand1 / operand2
+            }
+
+            var output = document.getElementById("answer");
+            output.innerText = answer;
+        }
+    </script>
+
+    <h3>Tiny Calculator</h3>
+    <input type="number" id="operand1">
+    <select id="operation">
+        <option value="addition">+</option>
+        <option value="subtraction">-</option>
+        <option value="multiplication">*</option>
+        <option value="division">/</option>
+    </select>
+    <input type="number" id="operand2">
+    =&nbsp;<span id="answer"></span>
+    <button onclick="calculate()">Calculate</button>
+    <hr>
+
+    <!-- Powers of 2 Table -->
+
+    <script>
+        function generatePowersTable() {
+
+            var tableHTML = "<table>";
+            tableHTML += "<th>Power Expression</th>"
+            tableHTML += "<th>Result</th>"
+
+            for (let r = 1; r <= 16; r++) {
+                tableHTML += "<tr>";
+                tableHTML += ("<td>2^" + r + "</td>");
+                tableHTML += ("<td>" + 2 ** r + "</td>");
+            }
+
+            tableHTML += "</table>";
+
+            document.getElementById("powerTable").innerHTML = tableHTML;
+        }
+    </script>
+
+    <h3>Powers Table</h3>
+    <div id="powerTable"></div>
+
+    <button onclick="generatePowersTable()">Generate Table</button>
+    <hr>
+
+    <!--  Drawing a Game Grid with Flexbox -->
+
+    <style>
+        .gridStyle {
+            display: flex;
+            flex-wrap: wrap;
+            width: 320px;
+            /* 3 * 100px + 2 * 10px gap */
+            gap: 10px;
+        }
+
+        .square {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(240, 153, 153, 0.663);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+    <div class="gridStyle" id="grid"></div>
+    <button onclick="drawGameGridWithFlexbox()">Draw Game Grid with Flexbox</button>
+    <script>
+        function drawGameGridWithFlexbox() {
+            const grid = document.getElementById("grid");
+            grid.innerHTML = "";
+            for (let i = 0; i < 9; i++) {
+                const square = document.createElement("div");
+                square.className = "square";
+                square.textContent = i + 1;
+                grid.appendChild(square);
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
