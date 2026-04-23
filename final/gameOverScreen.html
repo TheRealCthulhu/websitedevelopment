@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Leaderboard</h2>
+    <table id="leaderboard">
+    </table>
+    <script defer>
+        const ldb = document.getElementById("leaderboard");
+        var scoresList = [];
+        var storedScores = localStorage.getItem("localScores");
+        var newScore = localStorage.getItem("userScore");
+
+        if (storedScores) {
+            scoresList = JSON.parse(storedScores);
+        }
+        if (JSON.stringify(scoresList).includes((newScore))) { }
+        else {
+            if (newScore) {
+                scoresList.push(JSON.parse(newScore));
+            }
+        }
+
+        storedScores = JSON.stringify(scoresList);
+        localStorage.setItem("localScores", storedScores);
+
+        scoresList.sort(compareTimes);
+        if (scoresList.length > 9) {
+            scoresList.pop()
+        }
+
+        scoresList.forEach((element) => {
+            const tableRow = document.createElement("tr");
+            tableRow.innerHTML = "<td>" + (scoresList.indexOf(element) + 1) + ". " + element["user"] + ": " + element["time"] / 1000 + "s | " + element["size"] + "x" + element["size"] + "</td>"
+            ldb.appendChild(tableRow);
+        })
+        const returnRow = document.createElement("tr");
+        returnRow.innerHTML = "<td><button id='returnButton'>Return</button></td>";
+        ldb.appendChild(returnRow)
+        document.getElementById("returnButton").onclick = function () {
+            window.location.href = "mslobby.html";
+        }
+
+
+
+
+
+
+
+
+
+        function compareTimes(a, b) {
+            return a["time"] - b["time"]
+        }
+    </script>
+</body>
+
+</html>

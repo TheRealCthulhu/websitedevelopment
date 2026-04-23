@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Minesweeper</title>
+    <style>
+        body {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: gray;
+        }
+
+        .holder {
+            justify-self: center;
+            background-color: slategray;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: black 3px ridge;
+            margin: 5px;
+            padding: 5px;
+        }
+
+        #prep {
+            margin: auto
+        }
+
+        .conditionalVisibility {
+            display: none
+        }
+
+        #custom:checked~.conditionalVisibility {
+            display: block;
+            text-align: left;
+            margin: 0 auto;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="holder">
+        <h1>Prepare your Minesweeper!</h1>
+
+        <form id="prep">
+            <h3>Username</h3>
+            <input type="text" minlength="3" name="user" required>
+            <br><br><br>
+            <h3>Size</h3>
+            <input type="radio" id="small" name="size" value="10" required>
+            <label for="small">Small (10x10)</label>
+            <input type="radio" id="medium" name="size" value="20" required>
+            <label for="medium">Medium (20x20)</label>
+            <input type="radio" id="large" name="size" value="30" required>
+            <label for="large">Large (30x30)</label>
+            <input type="radio" id="extraLarge" name="size" value="50" required>
+            <label for="extraLarge">Extra Large (50x50)</label>
+            <input type="radio" id="custom" name="size" value="custom" required>
+            <label for="custom">Custom</label>
+            <input class="conditionalVisibility" type="number" id="custom" name="customSize" value="25">
+            <br><br><br>
+            <h3>Difficulty</h3>
+            <input type="radio" id="easy" name="difficulty" value="12" required>
+            <label for="easy">Easy</label> <!--12% mine density-->
+            <input type="radio" id="medium" name="difficulty" value="15" required>
+            <label for="medium">Medium</label> <!--15% mine density-->
+            <input type="radio" id="hard" name="difficulty" value="18" required>
+            <label for="hard">Hard</label> <!--18% mine density-->
+            <input type="radio" id="impossible" name="difficulty" value="20" required>
+            <label for="impossible">Impossible</label> <!--20% mine density-->
+            <br><br><br><br>
+            <button type="submit">Play!</button>
+            <script defer>
+                const form = document.getElementById("prep");
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const formData = new FormData(form);
+                    const dataObj = Object.fromEntries(formData.entries());
+                    localStorage.setItem("minesweeperSetup", JSON.stringify(dataObj))
+                    window.location.href = "minesweeper.html"
+                });
+            </script>
+        </form>
+    </div>
+</body>
+
+</html>
